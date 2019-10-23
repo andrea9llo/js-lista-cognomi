@@ -5,38 +5,23 @@
 // nuovo utente si trova
 
 // dichiaro le variabili
-var cognome,listaCognomi,cerca,i;
+var cognome,listaCognomi,posizione,elenco;
 
 // chiedo all'utente il cognome
 cognome = prompt("Inserisca il suo cognome");
 
 // creo array con diversi cognomi
 listaCognomi = ["novello","perrucci","appezzato","cancelmo"];
+listaCognomi.push(cognome);
+listaCognomi.sort();
 
-// console.log(listaCognomi);
-// listaCognomi.sort();
-// console.log(listaCognomi.sort());
 
-// verifico che il cognome inserito sia presente e se cosi blocco il ciclo
-cerca = false;
-
-i = 0;
-while (i < listaCognomi.length && cerca===false ) {
-  if (cognome === listaCognomi[i]) {
-    cerca = true;
-  }
-  i++;
-
+for (var i = 0; i < listaCognomi.length; i++) {
+  elenco = document.getElementById('lista').innerHTML;
+  document.getElementById('lista').innerHTML = elenco + "<li>" + listaCognomi[i] + "  " + "</li>" ;
+  console.log(listaCognomi[i]);
 }
 
-// se il cognome è presente lo mostro in ordine alfabetico
-if (cerca) {
-  listaCognomi.sort();
-  console.log(listaCognomi.sort());
-  //se nn è presete,aggiungo il cognome e anche lui mostro in ordine alfabetico
-} else {
-  listaCognomi.push(cognome);
-  console.log(listaCognomi.sort());
-}
-
-// stampo in pagina la lista ordinata
+posizione = parseInt(listaCognomi.indexOf(cognome) + 1);
+console.log(posizione);
+document.getElementById('pos').innerHTML = "Il tuo cognome si trova nella posizione : " + posizione;
